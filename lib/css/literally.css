@@ -1,104 +1,15 @@
- /*
-	Colorpicker for Bootstrap
-	Copyright 2012 Stefan Petre 
-	Licensed under the Apache License v2.0
-	http://www.apache.org/licenses/LICENSE-2.0
-*/
-.colorpicker-saturation {
-  width: 200px;
-  height: 200px;
-  background-image: url(../img/saturation.png);
-  cursor: crosshair;
-  float: left; }
-
-.colorpicker-saturation i {
-  display: block;
-  height: 5px;
-  width: 5px;
-  border: 1px solid black;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: -4px 0 0 -4px; }
-
-.colorpicker-saturation i b {
-  display: block;
-  height: 5px;
-  width: 5px;
-  border: 1px solid white;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px; }
-
-.colorpicker-hue,
-.colorpicker-alpha {
-  width: 60px;
-  height: 200px;
-  float: left;
-  cursor: row-resize;
-  margin-left: 4px;
-  margin-bottom: 4px; }
-
-.colorpicker-hue i,
-.colorpicker-alpha i {
-  display: block;
-  height: 1px;
-  background: #000;
-  border-top: 1px solid white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  margin-top: -1px; }
-
-.colorpicker-hue {
-  background-image: url(../img/hue.png); }
-
-.colorpicker-alpha {
-  background-image: url(../img/alpha.png);
-  display: none; }
-
 .colorpicker {
-  position: absolute;
-  *zoom: 1;
-  top: 0;
-  left: 0;
-  padding: 4px;
-  min-width: 120px;
-  margin-top: 1px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  background-color: #969696; }
-
-.colorpicker div {
-  position: relative; }
-
-.colorpicker.alpha {
-  min-width: 140px; }
-
-.colorpicker.alpha .colorpicker-alpha {
-  display: block; }
-
-.colorpicker-color {
-  height: 20px;
-  margin-top: 5px;
-  clear: both;
-  background-image: url(../img/alpha.png);
-  background-position: 0 100%; }
-
-.colorpicker-color div {
-  height: 20px; }
-
-.input-append.color .add-on i,
-.input-prepend.color .add-on i {
-  display: block;
-  cursor: pointer;
-  width: 16px;
-  height: 16px; }
+  display: inline-block; }
+  .colorpicker .colorpicker-color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid gray;
+    margin: 2px 0; }
+    .colorpicker .colorpicker-color.active {
+      margin: 0px;
+      width: 25px;
+      height: 25px; }
 
 .literally {
   position: relative;
@@ -115,7 +26,8 @@
     left: 0;
     cursor: default;
     width: 100%;
-    background-color: blue; }
+    background-color: blue;
+    background-repeat: no-repeat; }
 
 /* toolbar structure */
 .literally {
@@ -151,16 +63,9 @@
       float: right;
       text-align: right;
       padding-right: 3px; }
-    .literally .toolbar-row .color-square {
-      width: 24px;
-      height: 24px;
-      border-radius: 5px;
-      border: 1px solid #c8c8c8;
-      margin-right: 3px; }
-      .literally .toolbar-row .color-square.primary-picker, .literally .toolbar-row .color-square.secondary-picker {
-        float: left; }
-      .literally .toolbar-row .color-square.background-picker {
-        display: inline-block; }
+    .literally .toolbar-row .primary-picker, .literally .toolbar-row .secondary-picker {
+      display: inline-block;
+      margin-right: 10px; }
   .literally .tools {
     float: left; }
     .literally .tools .button {
@@ -176,25 +81,47 @@
           width: 18px;
           height: 18px;
           vertical-align: top; }
+  .literally .simple-strokewidth .button {
+    text-align: center;
+    width: 30px;
+    height: 24px;
+    padding: 0;
+    position: relative;
+    margin: inherit 0; }
+    .literally .simple-strokewidth .button .tool-image-wrapper {
+      height: 24px;
+      padding-top: 3px; }
+      .literally .simple-strokewidth .button .tool-image-wrapper img {
+        width: 18px;
+        height: 18px;
+        vertical-align: top; }
   .literally .zoom-display {
     text-align: center;
-    width: 1.5em;
+    width: 2.2em;
     border-radius: 5px;
     background-color: #333;
-    font-weight: bold;
+    font-size: 12px;
     color: white;
     display: inline-block;
     line-height: 14px;
-    padding: 5px 5px 5px 5px; }
+    padding: 5px 0;
+    position: relative;
+    top: -5px; }
   .literally .tool-options-container {
-    display: inline-block; }
+    display: inline-block;
+    position: relative;
+    top: -5px; }
+  .literally .tool-options input[type="text"] {
+    position: relative;
+    top: -3px;
+    width: 20em; }
   .literally .button {
     display: inline-block;
     padding-left: 5px;
     padding-right: 5px;
     text-align: center;
     text-decoration: none;
-    text-shadow: 1px 1px 0 white;
+    text-shadow: 1px 1px 0 #fff;
     color: #333;
     white-space: nowrap;
     cursor: pointer;
@@ -213,6 +140,13 @@
     /* IE hacks */
     zoom: 1;
     *display: inline; }
+    .literally .button .toolbar-image-wrapper {
+      height: 24px;
+      padding-top: 3px; }
+      .literally .button .toolbar-image-wrapper img {
+        width: 18px;
+        height: 18px;
+        vertical-align: top; }
   .literally .button:hover,
   .literally .button:focus,
   .literally .button:active,
@@ -245,7 +179,9 @@
     background-image: -moz-linear-gradient(#f37873, #b33630);
     background-image: -ms-linear-gradient(#f37873, #b33630);
     background-image: -o-linear-gradient(#f37873, #b33630);
-    background-image: linear-gradient(#f37873, #b33630); }
+    background-image: linear-gradient(#f37873, #b33630);
+    position: relative;
+    top: -4px; }
   .literally .button.danger:hover,
   .literally .button.danger:focus,
   .literally .button.danger:active {

@@ -29,13 +29,13 @@ initLiterallyCanvas = (el, opts = {}) ->
   opts = _.extend({
     primaryColor: 'rgba(0, 0, 0, 1)'
     secondaryColor: 'rgba(0, 0, 0, 0)'
-    backgroundColor: 'rgb(230, 230, 230)'
+    backgroundColor: 'rgb(230, 230, 230, 1.0)'
     imageURLPrefix: 'lib/img'
     keyboardShortcuts: true
     sizeToContainer: true
     toolClasses: [
-        LC.PencilWidget, LC.EraserWidget, LC.LineWidget, LC.RectangleWidget, LC.PanWidget,
-        LC.EyeDropperWidget]
+        LC.PencilWidget, LC.EraserWidget, LC.LineWidget, LC.RectangleWidget, 
+        LC.GraphWidget, LC.TextWidget, LC.PanWidget]
   }, opts)
   $el = $(el)
   $el.addClass('literally')
@@ -131,3 +131,7 @@ $.fn.literallycanvas = (opts = {}) ->
 
 $.fn.canvasForExport = ->
   @get(0).literallycanvas.canvasForExport()
+  
+  
+$.fn.literallybackground = (background) ->
+  @get(0).literallycanvas.setBackground(background.url)

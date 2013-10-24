@@ -22,6 +22,16 @@ class LC.Rectangle extends LC.Shape
     ctx.strokeRect(@x, @y, @width, @height)
 
 
+class LC.Text extends LC.Shape
+  constructor: (@x, @y, @size, @font, @color, @text) ->
+  
+  draw: (ctx) ->
+    if @text != ""
+      ctx.fillStyle = @color
+      ctx.font = @size+"px "+@font
+      ctx.fillText(@text, @x, @y);
+    
+
 class LC.Line extends LC.Shape
 
   constructor: (@x1, @y1, @strokeWidth, @color) ->
@@ -38,6 +48,75 @@ class LC.Line extends LC.Shape
     ctx.stroke()
 
 
+class LC.Graph extends LC.Shape
+  
+  constructor: (@x1, @y1, @strokeWidth, @color, @scale) ->
+    @x2 = @x1
+    @y2 = @y1
+    @oSize = Math.round(@strokeWidth*2.5)
+    @arrowSize = Math.round(@strokeWidth*1.5)
+    @tickLength = Math.round(@strokeWidth*1.5)
+    @tickWidth = Math.round(@strokeWidth/2)
+    
+  draw: (ctx) ->
+    ctx.strokeStyle = @color
+    ctx.lineCap = 'round'
+    ctx.lineWidth = @strokeWidth
+    # origin
+    ctx.beginPath()
+    # x-Axis
+    if @x1 < @x2
+      ctx.moveTo(@x1-@oSize, @y1)
+      ctx.lineTo(@x2, @y1)
+      # arrow right
+      ctx.moveTo(@x2-@arrowSize, @y1-@arrowSize)
+      ctx.lineTo(@x2, @y1)
+      ctx.lineTo(@x2-@arrowSize, @y1+@arrowSize)
+      # ticks right
+      ticks_x = (x for x in [(@x1+@scale)..(@x2-(@scale/2))] by @scale)
+    else
+      ctx.moveTo(@x1+@oSize, @y1)
+      ctx.lineTo(@x2, @y1)
+      # arrow left
+      ctx.moveTo(@x2+@arrowSize, @y1-@arrowSize)
+      ctx.lineTo(@x2, @y1)
+      ctx.lineTo(@x2+@arrowSize, @y1+@arrowSize)
+      # ticks left
+      ticks_x = (x for x in [(@x1-@scale)..(@x2+(@scale/2))] by -@scale)
+    # y-Axis
+    if @y1 > @y2
+      ctx.moveTo(@x1, @y1+@oSize)
+      ctx.lineTo(@x1, @y2)
+      # arrow top
+      ctx.moveTo(@x1-@arrowSize, @y2+@arrowSize)
+      ctx.lineTo(@x1, @y2)
+      ctx.lineTo(@x1+@arrowSize, @y2+@arrowSize)
+      # ticks up
+      ticks_y = (y for y in [(@y1-@scale)..(@y2+(@scale/2))] by -@scale)
+    else
+      ctx.moveTo(@x1, @y1-@oSize)
+      ctx.lineTo(@x1, @y2)
+      # arrow bottom
+      ctx.moveTo(@x1+@arrowSize, @y2-@arrowSize)
+      ctx.lineTo(@x1, @y2)
+      ctx.lineTo(@x1-@arrowSize, @y2-@arrowSize)
+      # ticks down
+      ticks_y = (y for y in [(@y1+@scale)..(@y2-(@scale/2))] by @scale)
+    ctx.stroke()
+    #ticks
+    ctx.lineWidth = @tickWidth
+    ctx.beginPath()
+    for x in ticks_x
+      do (x) =>
+        ctx.moveTo(x, @y1-@tickLength)
+        ctx.lineTo(x, @y1+@tickLength)
+    for y in ticks_y
+      do (y) =>
+        ctx.moveTo(@x1-@tickLength, y)
+        ctx.lineTo(@x1+@tickLength, y)
+    ctx.stroke()
+    
+  
 class LC.LinePathShape extends LC.Shape
   constructor: ->
     @points = []

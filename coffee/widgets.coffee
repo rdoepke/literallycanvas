@@ -36,7 +36,7 @@ class LC.StrokeWidget extends LC.ToolWidget
   options: ->
     $el = $("
       <span class='brush-width-min'>1 px</span>
-      <input type='range' min='1' max='50' step='1' value='#{@strokeWidth}'>
+      <input type='range' min='1' max='50' step='1' value='#{@tool.strokeWidth}'>
       <span class='brush-width-max'>50 px</span>
       <span class='brush-width-val'>(5 px)</span>
     ")
@@ -51,11 +51,45 @@ class LC.StrokeWidget extends LC.ToolWidget
 
     $input.change (e) =>
       @tool.strokeWidth = parseInt($(e.currentTarget).val(), 10)
-      $brushWidthVal.html("(#{@strokeWidth} px)")
+      $brushWidthVal.html("(#{@tool.strokeWidth} px)")
     return $el
 
 
-class LC.RectangleWidget extends LC.StrokeWidget
+class LC.SimpleStrokeWidget extends LC.ToolWidget
+  
+  options: ->
+    $el = $("
+      <div class='button-group simple-strokewidth'>
+        <div class='button' data-strokewidth='2' title='Fine Stroke'>
+          <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/fine.png'></div>
+        </div><div class='button' data-strokewidth='5' title='Medium Stroke'>
+          <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/medium.png'></div>
+        </div><div class='button' data-strokewidth='20' title='Coarse stroke'>
+          <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/coarse.png'></div>
+        </div>
+      </div>
+    ")
+
+    $buttons = $el.filter('.button')
+    if $buttons.size() == 0
+      $buttons = $el.find('.button')
+    $buttons.click (e) =>
+      $buttons.removeClass("active")  
+      @selectStroke(e)
+      
+    #find active strokesize
+    $active = $el.find("[data-strokewidth='#{@tool.strokeWidth}']")
+    $active.addClass("active")
+    
+    return $el
+
+  selectStroke: (e) ->
+    $button = $(e.currentTarget)
+    @tool.strokeWidth = parseInt($button.data("strokewidth"))
+    $button.addClass("active")
+    
+
+class LC.RectangleWidget extends LC.SimpleStrokeWidget
 
   title: 'Rectangle'
   cssSuffix: 'rectangle'
@@ -63,7 +97,7 @@ class LC.RectangleWidget extends LC.StrokeWidget
   makeTool: -> new LC.RectangleTool()
 
 
-class LC.LineWidget extends LC.StrokeWidget
+class LC.LineWidget extends LC.SimpleStrokeWidget
 
   title: 'Line'
   cssSuffix: 'line'
@@ -71,7 +105,7 @@ class LC.LineWidget extends LC.StrokeWidget
   makeTool: -> new LC.LineTool()
    
 
-class LC.PencilWidget extends LC.StrokeWidget
+class LC.PencilWidget extends LC.SimpleStrokeWidget
 
   title: "Pencil"
   cssSuffix: "pencil"
@@ -79,7 +113,7 @@ class LC.PencilWidget extends LC.StrokeWidget
   makeTool: -> new LC.Pencil()
 
 
-class LC.EraserWidget extends LC.PencilWidget
+class LC.EraserWidget extends LC.SimpleStrokeWidget
 
   title: "Eraser"
   cssSuffix: "eraser"
@@ -101,3 +135,29 @@ class LC.EyeDropperWidget extends LC.ToolWidget
   cssSuffix: "eye-dropper"
   button: -> "<img src='#{@opts.imageURLPrefix}/eyedropper.png'>"
   makeTool: -> new LC.EyeDropper()
+  
+  
+class LC.GraphWidget extends LC.ToolWidget
+  title: "Graph"
+  cssSuffix: "graph"
+  button: -> "<img src='#{@opts.imageURLPrefix}/graph.png'>"
+  makeTool: -> new LC.GraphTool()
+
+
+class LC.TextWidget extends LC.ToolWidget
+  title: "Text"
+  cssSuffix: "text"
+  button: -> "<img src='#{@opts.imageURLPrefix}/text.png'>"
+  makeTool: -> new LC.TextTool()
+  options: ->
+    $el = $("
+      <input class='input-text-val' type='text' value='' placeholder='Text to insert ...'>
+    ")
+
+    $input = $el.filter('input')
+    if $input.size() == 0
+      $input = $el.find('input')
+
+    $input.bind 'keyup change', (e) =>
+      @tool.inputText = $(e.currentTarget).val()
+    return $el

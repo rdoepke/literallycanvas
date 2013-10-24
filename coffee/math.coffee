@@ -73,3 +73,9 @@ LC.scalePositionScalar = (val, viewportSize, oldScale, newScale) ->
   oldSize = viewportSize * oldScale
   newSize = viewportSize * newScale
   return val + (oldSize - newSize) / 2
+
+LC.resize = (oldWidth, oldHeight, targetWidth, targetHeight) ->
+  horizontalFactor = targetWidth / oldWidth
+  verticalFactor = targetHeight / oldHeight
+  factor = Math.min(verticalFactor, horizontalFactor)
+  return { width: Math.round(factor * oldWidth), height: Math.round(factor * oldHeight)}

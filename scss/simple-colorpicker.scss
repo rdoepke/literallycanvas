@@ -1,0 +1,18 @@
+.colorpicker {
+    display: inline-block;
+
+    .colorpicker-color {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid gray;
+        margin: 2px 0;
+
+        &.active {
+            margin: 0px;
+            width: 25px;
+            height: 25px;
+        }
+    }
+}
+

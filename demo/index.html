@@ -2,39 +2,52 @@
 <html>
   <head>
     <title>Literally Canvas</title>
-    <link href="/lib/css/literally.css" rel="stylesheet">
+    <link href="../lib/css/literally.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 
     <style type="text/css">
       body {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         margin: 0;
+        background-color: grey;
+        text-align: center;
       }
 
       .fs-container {
-        width: 768px;
-        height: 500px;
+        max-width: 800px;
         margin: auto;
         margin-top: 50px;
       }
 
       .literally {
-        width: 100%;
-        height: 100%;
+        width: 800px;
+        height: 400px;
       }
+      
     </style>
   </head>
 
   <body>
     <div class="fs-container">
-      <div class="literally"><canvas></canvas></div>
+        <div class="literally"><canvas></canvas></div>
     </div>
-
-    <script src="/demo/jquery-1.8.2.js"></script>
-    <script src="/demo/underscore-1.4.2.js"></script>
-    <script src="/lib/js/literallycanvas.js"></script>
+    
+    <button class="add-background">Add background</button>
+    <button class="preview">Preview canvas</button>
+    <button class="get-image">Open as image</button>
+    
+    <div class="output-container" style="display: none;">
+        <canvas id="output-canvas"></canvas>
+    </div>
+    
+    <script src="jquery-1.8.2.js"></script>
+    <script src="underscore-1.4.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="../lib/js/literallycanvas.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function() {
+          
         // disable scrolling on touch devices so we can actually draw
         $(document).bind('touchmove', function(e) {
           if (e.target === document.documentElement) {
@@ -43,7 +56,35 @@
         });
 
         // the only LC-specific thing we have to do
-        $('.literally').literallycanvas({imageURLPrefix: '/lib/img'});
+        $('.literally').resizable().literallycanvas({
+            imageURLPrefix: '../lib/img',
+            backgroundColor: 'rgba(255, 255, 255, 0.0)'
+        });
+        
+        // Open as image
+        $('.get-image').click(function () {
+            return window.open($('.literally').canvasForExport().toDataURL());
+        });
+        
+        // Preview in canvas
+        $('.preview').click(function() {
+            var canvas = $('#output-canvas').get(0);
+            var literally = $('.literally').canvasForExport();
+            canvas.width = literally.width;
+            canvas.height = literally.height;
+            var ctx = canvas.getContext('2d');
+            ctx.drawImage(literally, 0, 0);
+            
+            $('.output-container').show();
+        });
+        
+        // Add some Background
+        $('.add-background').click(function() {
+            $('.literally').literallybackground({
+                url: "slide.jpg"
+            });
+        });
+        
       });
     </script>
   </body>

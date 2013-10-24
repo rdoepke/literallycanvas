@@ -13,7 +13,7 @@ class LC.Tool
 class LC.StrokeTool extends LC.Tool
 
   constructor: () ->
-    @strokeWidth = 5
+    @strokeWidth = 2
 
 
 class LC.RectangleTool extends LC.StrokeTool
@@ -67,7 +67,7 @@ class LC.Pencil extends LC.StrokeTool
 class LC.Eraser extends LC.Pencil
 
   constructor: () ->
-    @strokeWidth = 10
+    @strokeWidth = 5
 
   makePoint: (x, y, lc) -> new LC.Point(x, y, @strokeWidth, '#000')
   makeShape: -> new LC.EraseLinePathShape(this)
@@ -94,3 +94,38 @@ class LC.EyeDropper extends LC.Tool
 
   continue: (x, y, lc) ->
     @readColor(x, y, lc)
+    
+
+class LC.TextTool extends LC.Tool
+
+  constructor: () ->
+    @inputText = ""
+    
+
+  begin: (x, y, lc) ->
+    @currentShape = new LC.Text(
+      x, y, 12, "sans-serif", lc.getColor('primary'), @inputText)
+
+  continue: (x, y, lc) ->
+    @currentShape.text = @inputText
+    @currentShape.x = x
+    @currentShape.y = y
+    lc.update(@currentShape)
+
+  end: (x, y, lc) ->
+    if @inputText != ""
+      lc.saveShape(@currentShape)
+      
+      
+class LC.GraphTool extends LC.Tool
+
+  begin: (x, y, lc) ->
+    @currentShape = new LC.Graph(x, y, 2, lc.getColor('primary'), 20)
+
+  continue: (x, y, lc) ->
+    @currentShape.x2 = x
+    @currentShape.y2 = y
+    lc.update(@currentShape)
+
+  end: (x, y, lc) ->
+    lc.saveShape(@currentShape)

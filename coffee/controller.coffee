@@ -8,7 +8,7 @@ class LC.LiterallyCanvas
     @colors =
       primary: @opts.primaryColor or '#000'
       secondary: @opts.secondaryColor or '#fff'
-      background: @opts.backgroundColor or 'rgb(230, 230, 230)'
+      background: @opts.backgroundColor or 'rgba(230, 230, 230, 1.0)'
     $(@canvas).css('background-color', @colors.background)
 
     @buffer = $('<canvas>').get(0)
@@ -71,6 +71,12 @@ class LC.LiterallyCanvas
     # Subtract because we are moving the viewport
     @position.x = @position.x - x
     @position.y = @position.y - y
+    # if we have a background, we need to move it as well
+    if @background
+      @background.offset.x = @background.offset.x - x
+      @background.offset.y = @background.offset.y - y
+      @updateBackground()
+      
 
   zoom: (factor) ->
     oldScale = @scale
@@ -85,6 +91,18 @@ class LC.LiterallyCanvas
       @position.y, @canvas.height, oldScale, @scale)
 
     @repaint()
+    
+    # if we have a background, we need to zoom it as well
+    if @background
+      @background.offset =
+        x: LC.scalePositionScalar(
+          @background.offset.x, @canvas.width, oldScale, @scale)
+        y: LC.scalePositionScalar(
+          @background.offset.y, @canvas.height, oldScale, @scale)
+      @background.dimension = 
+        w: Math.round(@background.init_dimension.w * @scale)
+        h: Math.round(@background.init_dimension.h * @scale)
+      @updateBackground()
 
   # Repaints the canvas.
   # If dirty is true then all saved shapes are completely redrawn,
@@ -163,9 +181,48 @@ class LC.LiterallyCanvas
       null
 
   canvasForExport: ->
-    @repaint(true, true)
-    @canvas
+    #originally draws new rectangle as background, like this
+    #@repaint(true, true)
+    #we want to annotate slides - so leave it transparent (2nd param = false):
+    @repaint(true, false)
+    output = $('<canvas>').get(0)
+    output.width = @canvas.width
+    output.height = @canvas.height
+    outputCtx = output.getContext('2d')
+    if @background
+      outputCtx.drawImage(@background.image, 
+        @background.offset.x, @background.offset.y, 
+        @background.dimension.w, @background.dimension.h)
+    outputCtx.drawImage(@canvas, 0, 0)
+    output
+    
+  # for annotating slides we need to be able to set a background
+  setBackground: (backgroundURL) ->
+    if !backgroundURL
+      @background = null
+      return
+    image = new Image()
+    image.onload = =>
+      console.log "YAY, lets go annotating with #{backgroundURL}"
+      resizedDimensions = LC.resize(image.width, image.height, @canvas.width, @canvas.height)
+      @background = 
+        image: image
+        init_dimension:
+          w: resizedDimensions.width
+          h: resizedDimensions.height
+        dimension:
+          w: resizedDimensions.width
+          h: resizedDimensions.height
+        offset:
+          x: 0
+          y: 0
+      @$canvas.css("background-image", "url('#{backgroundURL}')")
+      @updateBackground()
+    image.src = backgroundURL    
 
+  updateBackground: ->
+    @$canvas.css("background-size", "#{@background.dimension.w}px #{@background.dimension.h}px")
+    @$canvas.css("background-position", "#{@background.offset.x}px #{@background.offset.y}px")
 
 # maybe add checks to these in the future to make sure you never double-undo or
 # double-redo

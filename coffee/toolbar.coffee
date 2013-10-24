@@ -1,65 +1,17 @@
 window.LC = window.LC ? {}
 
-
-LC.toolbarHTML = '
-  <div class="toolbar-row">
-    <div class="toolbar-row-left">
-      <div class="tools button-group"></div>
-      &nbsp;&nbsp;&nbsp;&nbsp;Background:
-      <div class="color-square background-picker">&nbsp;</div>
-    </div>
-
-    <div class="toolbar-row-right">
-      <div class="action-buttons">
-        <div class="button clear-button danger">Clear</div>
-        <div class="button-group">
-          <div class="button btn-warning undo-button">&larr;</div><div class="button btn-warning redo-button">&rarr;</div>
-        </div>
-        <div class="button-group">
-          <div class="button btn-inverse zoom-out-button">&ndash;</div><div class="button btn-inverse zoom-in-button">+</div>
-        </div>
-        <div class="zoom-display">1</div>
-      </div>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-
-  <div class="toolbar-row">
-    <div class="toolbar-row-left">
-      <div class="color-square primary-picker"></div>
-      <div class="color-square secondary-picker"></div>
-      <div class="tool-options-container"></div>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-'
-
-
 LC.makeColorPicker = ($el, title, callback) ->
-  $el.data('color', 'rgb(0, 0, 0)')
+  $el.data('color', 'rgba(0, 0, 0, 1.0)')
   cp = $el.colorpicker(format: 'rgba').data('colorpicker')
-  cp.hide()
   $el.on 'changeColor', (e) ->
     callback(e.color.toRGB())
-    $(document).one 'click', ->
-      cp.hide()
-  $el.click (e) ->
-    if cp.picker.is(':visible')
-      cp.hide()
-    else
-      $(document).one 'click', ->
-        # quick hack; we're actually still in the same click event
-        $(document).one 'click', ->
-          cp.hide()
-      cp.show()
-      cp.place()
   return cp
 
 
 class LC.Toolbar
 
   constructor: (@lc, @$el, @opts) ->
-    @$el.append(LC.toolbarHTML)
+    @$el.append(@template())
     @initColors()
     @initButtons()
     @initTools()
@@ -67,29 +19,15 @@ class LC.Toolbar
 
   _bindColorPicker: (name, title) ->
     $el = @$el.find(".#{name}-picker")
-    $el.css('background-color', @lc.getColor(name))
-    @lc.on "#{name}ColorChange", (color) ->
-      $el.css('background-color', color)
-
     LC.makeColorPicker $el, "#{title} color", (c) =>
       @lc.setColor(name, "rgba(#{c.r}, #{c.g}, #{c.b}, #{c.a})")
-      $el.css('background-position', "0% #{(1 - c.a) * 100}%")
 
   initColors: ->
-    @$el.find('.primary-picker, .secondary-picker, .background-picker')
-      .css('background-image', "url(#{@opts.imageURLPrefix}/alpha.png)")
-    @$el.find('.secondary-picker')
-      .css('background-position', "0% 100%")
     pickers = [
       @_bindColorPicker('primary', 'Primary (stroke)')
-      @_bindColorPicker('secondary', 'Secondary (fill)')
-      @_bindColorPicker('background', 'Background')
+      #@_bindColorPicker('secondary', 'Secondary (fill)')
+      #@_bindColorPicker('background', 'Background')
     ]
-
-    @lc.$canvas.mousedown ->
-      _.each pickers, (p) -> p.hide()
-    @lc.$canvas.on 'touchstart', ->
-      _.each pickers, (p) -> p.hide()
 
   initButtons: ->
     @$el.find('.clear-button').click (e) =>
@@ -111,7 +49,7 @@ class LC.Toolbar
       @$el.find('.tool-options-container').append(optsEl)
 
       buttonEl = $("
-        <div class='button tool-#{t.cssSuffix}'>
+        <div class='button tool-#{t.cssSuffix}' title='#{t.title}'>
           <div class='tool-image-wrapper'></div>
         </div>
         ")
@@ -136,3 +74,42 @@ class LC.Toolbar
     t.select(@lc)
     @$el.find('.tool-options').hide()
     t.$el.show() if t.$el
+
+  template: () ->
+    return "
+    <div class='toolbar-row'>
+      <div class='toolbar-row-left'>
+        <div class='tools button-group'></div>
+      </div>
+
+      <div class='toolbar-row-right'>
+        <div class='action-buttons'>
+          <div class='button clear-button danger' title='Start over'>Clear</div>
+          <div class='button-group'>
+            <div class='button btn-warning undo-button' title='Undo'>
+              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/undo.png'></div>
+            </div><div class='button btn-warning redo-button' title='Redo'>
+              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/redo.png'></div>
+            </div>
+          </div>
+          <div class='button-group'>
+            <div class='button btn-inverse zoom-out-button' title='Zoom out'>
+              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-out.png'></div>
+            </div><div class='button btn-inverse zoom-in-button' title='Zoom in'>
+              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-in.png'></div>
+            </div>
+          </div>
+          <div class='zoom-display' title='Current zoomlevel'>1</div>
+        </div>
+      </div>
+      <div class='clearfix'></div>
+    </div>
+
+    <div class='toolbar-row'>
+      <div class='toolbar-row-left'>
+        <div class='primary-picker'></div>
+        <div class='tool-options-container'></div>
+      </div>
+      <div class='clearfix'></div>
+    </div>
+  "

@@ -1,15 +1,19 @@
-Literally Canvas
+Canvas for WeScript
 ================
 
-Literally Canvas is an extensible, open source (BSD-licensed), HTML5 drawing
-widget that currently supports a minimal set of drawing operations. You can
-draw, erase, set the color with the eyedropper, undo, redo, pan, and zoom. It
-depends on jQuery and Underscore.js.
+Canvas for WeScript is an HTML5 drawing widget designed to be used in the
+collaborative lecture notes app WeScript of the RWTH Aachen University. It is
+based on the great drawing widget [Literally Canvas](http://literallycanvas.github.com)
+written by Stephen Johnson and Cameron Paul. It was reduced in function and adds 
+new functionality. It is laid out to be used in a lecture slides annotating
+context. Hence, it is capable for creating quick and dirty lecture notes
+scribbles. In contrast to the original widget it is capable of loading images
+in the background to be drawn upon and exporting the result.
 
 Usage
 -----
 
-[Full documentation](http://literallycanvas.github.com)
+[Full original documentation ](http://literallycanvas.github.com)
 
 Literally Canvas depends on jQuery (tested on 1.8.2) and underscore.js (tested
 on 1.4.2). The "fat" version includes these dependencies. The "thin" version
@@ -25,13 +29,6 @@ appropriate file from `lib/js`. Then do this:
 ```javascript
 $('.literally').literallycanvas();
 ```
-
-For options and other information, see the [full
-documentation](http://literallycanvas.github.com).
-
-The color picker is derived from (but not identical to) [this one by Stefan
-Petre](http://www.eyecon.ro/bootstrap-colorpicker/). We intend to replace it in
-the next version.
 
 Files
 -----
