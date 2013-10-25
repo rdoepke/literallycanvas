@@ -157,6 +157,7 @@ class LC.TextWidget extends LC.ToolWidget
     $input = $el.filter('input')
     if $input.size() == 0
       $input = $el.find('input')
+    @tool.input = $input
 
     $input.bind 'keyup change', (e) =>
       @tool.inputText = $(e.currentTarget).val()

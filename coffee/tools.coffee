@@ -103,8 +103,10 @@ class LC.TextTool extends LC.Tool
     
 
   begin: (x, y, lc) ->
+    @input.focus()
+    @boundKeyup = @boundClick = false
     @currentShape = new LC.Text(
-      x, y, 12, "sans-serif", lc.getColor('primary'), @inputText)
+      x, y, 16, "sans-serif", lc.getColor('primary'), @inputText)
 
   continue: (x, y, lc) ->
     @currentShape.text = @inputText
@@ -112,9 +114,38 @@ class LC.TextTool extends LC.Tool
     @currentShape.y = y
     lc.update(@currentShape)
 
+  save: (lc) ->
+    @input.off 'keyup.edittext change.edittext'
+    $('body').off 'click.edittext'
+    lc.saveShape(@currentShape)
+    @inputText = ""
+    @input.val("")
+    
+  bodyClickOne: (lc) ->
+    $('body').one 'click.edittext', (e) =>
+      if (e.target == @input.get(0))
+        @bodyClickOne lc
+      else
+        @save lc
+
   end: (x, y, lc) ->
-    if @inputText != ""
-      lc.saveShape(@currentShape)
+    if !$.trim(@inputText)
+      @endpos =
+        x: x
+        y: y
+        lc: lc
+      if !@boundKeyup
+        @boundKeyup = true
+        @input.on 'keyup.edittext change.edittext', (e) =>
+          if e.keyCode == 13
+            @save lc
+          else
+            if !@boundClick
+              @boundClick = true
+              @bodyClickOne lc
+            @continue(@endpos.x, @endpos.y, @endpos.lc)
+    else
+      @save lc
       
       
 class LC.GraphTool extends LC.Tool

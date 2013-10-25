@@ -203,8 +203,8 @@ class LC.LiterallyCanvas
       return
     image = new Image()
     image.onload = =>
-      console.log "YAY, lets go annotating with #{backgroundURL}"
-      resizedDimensions = LC.resize(image.width, image.height, @canvas.width, @canvas.height)
+      resizedDimensions = LC.resize(image.width, image.height, 
+        @canvas.width, @canvas.height)
       @background = 
         image: image
         init_dimension:
@@ -221,8 +221,10 @@ class LC.LiterallyCanvas
     image.src = backgroundURL    
 
   updateBackground: ->
-    @$canvas.css("background-size", "#{@background.dimension.w}px #{@background.dimension.h}px")
-    @$canvas.css("background-position", "#{@background.offset.x}px #{@background.offset.y}px")
+    @$canvas.css("background-size", 
+      "#{@background.dimension.w}px #{@background.dimension.h}px")
+    @$canvas.css("background-position",
+      "#{@background.offset.x}px #{@background.offset.y}px")
 
 # maybe add checks to these in the future to make sure you never double-undo or
 # double-redo
