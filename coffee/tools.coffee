@@ -103,20 +103,26 @@ class LC.TextTool extends LC.Tool
     
 
   begin: (x, y, lc) ->
-    @input.focus()
-    @boundKeyup = @boundClick = false
-    @currentShape = new LC.Text(
-      x, y, 16, "sans-serif", lc.getColor('primary'), @inputText)
+    if !@endpos
+      @input.focus()
+      @size = 16
+      @currentShape = new LC.Text(
+        x, y, @size, "sans-serif", lc.getColor('primary'), @inputText)
 
   continue: (x, y, lc) ->
     @currentShape.text = @inputText
     @currentShape.x = x
     @currentShape.y = y
     lc.update(@currentShape)
-
-  save: (lc) ->
+    
+  finishTyping: (lc) ->
     @input.off 'keyup.edittext change.edittext'
     $('body').off 'click.edittext'
+    @boundKeyup = @boundClick = false
+    @endpos = null
+    @save lc
+
+  save: (lc) ->
     lc.saveShape(@currentShape)
     @inputText = ""
     @input.val("")
@@ -126,7 +132,7 @@ class LC.TextTool extends LC.Tool
       if (e.target == @input.get(0))
         @bodyClickOne lc
       else
-        @save lc
+        @finishTyping lc
 
   end: (x, y, lc) ->
     if !$.trim(@inputText)
@@ -139,13 +145,16 @@ class LC.TextTool extends LC.Tool
         @input.on 'keyup.edittext change.edittext', (e) =>
           if e.keyCode == 13
             @save lc
+            @endpos.y = @endpos.y + @size*1.2
+            @currentShape = new LC.Text(@endpos.x, @endpos.y, @size, 
+              "sans-serif", lc.getColor('primary'), @inputText)
           else
             if !@boundClick
               @boundClick = true
               @bodyClickOne lc
-            @continue(@endpos.x, @endpos.y, @endpos.lc)
+          @continue(@endpos.x, @endpos.y, @endpos.lc)
     else
-      @save lc
+      @finishTyping lc
       
       
 class LC.GraphTool extends LC.Tool
