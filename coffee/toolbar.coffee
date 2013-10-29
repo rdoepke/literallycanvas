@@ -12,9 +12,9 @@ class LC.Toolbar
 
   constructor: (@lc, @$el, @opts) ->
     @$el.append(@template())
-    @initColors()
     @initButtons()
     @initTools()
+    @initColors()
     @initZoom()
     @initCustomButtons()
 

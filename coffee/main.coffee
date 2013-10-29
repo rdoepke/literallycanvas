@@ -126,7 +126,6 @@ initLiterallyCanvas = (el, opts = {}) ->
 $.fn.literallycanvas = (opts = {}, option = null, set = null) ->
   @each (ix, el) =>
     if !el.literallycanvas || typeof opts == 'object'
-      console.log "initialize"
       val = initLiterallyCanvas(el, opts)
       el.literallycanvas = val[0]
       el.literallycanvasToolbar = val[1]

@@ -19,8 +19,11 @@ class LC.StrokeTool extends LC.Tool
 class LC.RectangleTool extends LC.StrokeTool
 
   begin: (x, y, lc) ->
-    @currentShape = new LC.Rectangle(
-      x, y, @strokeWidth, lc.getColor('primary'), lc.getColor('secondary'))
+    if !@transparent
+      @currentShape = new LC.Rectangle(x, y, 0, lc.getColor('primary'),lc.getColor('primary'))
+    else   
+      @currentShape = new LC.Rectangle(x, y, @strokeWidth,
+        lc.getColor('primary'),lc.getColor('secondary'))
 
   continue: (x, y, lc) ->
     @currentShape.width = x - @currentShape.x

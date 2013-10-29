@@ -95,7 +95,27 @@ class LC.RectangleWidget extends LC.SimpleStrokeWidget
   cssSuffix: 'rectangle'
   button: -> "<img src='#{@opts.imageURLPrefix}/rectangle.png'>"
   makeTool: -> new LC.RectangleTool()
+  options: ->
+    $el = $("
+      <input type='checkbox' class='transparent-val'>
+    ")
 
+    $input = $el.filter('input')
+    if $input.size() == 0
+      $input = $el.find('input')
+    @tool.input = $input
+    
+    $super = super.hide()
+    $input.bind 'change', (e) =>
+      @tool.transparent = $input.attr('checked')
+      if @tool.transparent
+        $super.show()
+      else
+        $super.hide()
+    
+    $el.after($('<span>Transparent&nbsp;&nbsp;&nbsp;</span>').after($super))
+    return $el
+  
 
 class LC.LineWidget extends LC.SimpleStrokeWidget
 
