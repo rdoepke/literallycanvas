@@ -30,6 +30,7 @@ initLiterallyCanvas = (el, opts = {}) ->
     primaryColor: 'rgba(0, 0, 0, 1)'
     secondaryColor: 'rgba(0, 0, 0, 0)'
     backgroundColor: 'rgb(230, 230, 230, 1.0)'
+    backgroundImage: ''
     imageURLPrefix: 'lib/img'
     keyboardShortcuts: true
     sizeToContainer: true
@@ -121,17 +122,18 @@ initLiterallyCanvas = (el, opts = {}) ->
   [lc, tb]
 
 
-$.fn.literallycanvas = (opts = {}) ->
+$.fn.literallycanvas = (opts = {}, option = null, set = null) ->
   @each (ix, el) =>
-    val = initLiterallyCanvas(el, opts)
-    el.literallycanvas = val[0]
-    el.literallycanvasToolbar = val[1]
+    if !el.literallycanvas || typeof opts == 'object'
+      console.log "initialize"
+      val = initLiterallyCanvas(el, opts)
+      el.literallycanvas = val[0]
+      el.literallycanvasToolbar = val[1]
+    if opts == 'option' && typeof option == 'string'
+      switch option
+        when 'backgroundImage' then el.literallycanvas.setBackground set
   this
 
 
 $.fn.canvasForExport = ->
   @get(0).literallycanvas.canvasForExport()
-  
-  
-$.fn.literallybackground = (background) ->
-  @get(0).literallycanvas.setBackground(background.url)

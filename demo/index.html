@@ -80,9 +80,8 @@
         
         // Add some Background
         $('.add-background').click(function() {
-            $('.literally').literallybackground({
-                url: "slide.jpg"
-            });
+            $('.literally').literallycanvas("option", 
+              "backgroundImage", "slide.jpg");
         });
         
       });

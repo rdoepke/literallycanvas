@@ -10,6 +10,7 @@ class LC.LiterallyCanvas
       secondary: @opts.secondaryColor or '#fff'
       background: @opts.backgroundColor or 'rgba(230, 230, 230, 1.0)'
     $(@canvas).css('background-color', @colors.background)
+    @setBackground @opts.backgroundImage
 
     @buffer = $('<canvas>').get(0)
     @ctx = @canvas.getContext('2d')
@@ -198,7 +199,8 @@ class LC.LiterallyCanvas
     
   # for annotating slides we need to be able to set a background
   setBackground: (backgroundURL) ->
-    if !backgroundURL
+    if !backgroundURL || backgroundURL == ''
+      @$canvas.css 'background-image', 'none'
       @background = null
       return
     image = new Image()
