@@ -37,6 +37,7 @@ initLiterallyCanvas = (el, opts = {}) ->
     toolClasses: [
         LC.PencilWidget, LC.EraserWidget, LC.LineWidget, LC.RectangleWidget, 
         LC.GraphWidget, LC.TextWidget, LC.PanWidget]
+    customButtons: []
   }, opts)
   $el = $(el)
   $el.addClass('literally')

@@ -71,14 +71,16 @@
       width: 30px;
       height: 24px;
       overflow: hidden; }
-      .literally .toolbar-row .button .tool-image-wrapper {
+      .literally .toolbar-row .button .button-image-wrapper {
         height: 24px;
-        padding-top: 3px; }
-        .literally .toolbar-row .button .tool-image-wrapper img {
+        padding-top: 3px;
+        display: inline-block; }
+        .literally .toolbar-row .button .button-image-wrapper img {
           width: 18px;
           height: 18px;
           vertical-align: top; }
       .literally .toolbar-row .button.varwidth {
+        padding: 0 8px;
         width: auto; }
   .literally .zoom-display {
     text-align: center;
@@ -95,8 +97,9 @@
     display: inline-block;
     padding: 0 5px;
     text-align: center;
+    vertical-align: top;
     text-decoration: none;
-    text-shadow: 1px 1px 0 #fff;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
     color: #333;
     white-space: nowrap;
     cursor: pointer;

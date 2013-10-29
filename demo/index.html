@@ -58,12 +58,16 @@
         // the only LC-specific thing we have to do
         $('.literally').resizable().literallycanvas({
             imageURLPrefix: '../lib/img',
-            backgroundColor: 'rgba(255, 255, 255, 0.0)'
-        });
-        
-        // Open as image
-        $('.get-image').click(function () {
-            return window.open($('.literally').canvasForExport().toDataURL());
+            backgroundColor: 'rgba(255, 255, 255, 0.0)',
+            customButtons: [{
+                title: 'Open canvas contents as image',
+                cssSuffix: 'as-image',
+                buttonImage: null,
+                text: "Open as image",
+                callback: function() {
+                  return window.open($('.literally').canvasForExport().toDataURL());
+                }
+            }]
         });
         
         // Preview in canvas

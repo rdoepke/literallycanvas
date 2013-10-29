@@ -61,11 +61,11 @@ class LC.SimpleStrokeWidget extends LC.ToolWidget
     $el = $("
       <div class='button-group simple-strokewidth'>
         <div class='button' data-strokewidth='2' title='Fine Stroke'>
-          <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/fine.png'></div>
+          <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/fine.png'></div>
         </div><div class='button' data-strokewidth='5' title='Medium Stroke'>
-          <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/medium.png'></div>
+          <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/medium.png'></div>
         </div><div class='button' data-strokewidth='20' title='Coarse stroke'>
-          <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/coarse.png'></div>
+          <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/coarse.png'></div>
         </div>
       </div>
     ")

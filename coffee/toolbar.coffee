@@ -16,6 +16,7 @@ class LC.Toolbar
     @initButtons()
     @initTools()
     @initZoom()
+    @initCustomButtons()
 
   _bindColorPicker: (name, title) ->
     $el = @$el.find(".#{name}-picker")
@@ -50,15 +51,46 @@ class LC.Toolbar
 
       buttonEl = $("
         <div class='button tool-#{t.cssSuffix}' title='#{t.title}'>
-          <div class='tool-image-wrapper'></div>
+          <div class='button-image-wrapper'></div>
         </div>
         ")
-      buttonEl.find('.tool-image-wrapper').html(t.button())
+      buttonEl.find('.button-image-wrapper').html(t.button())
       @$el.find('.tools').append(buttonEl)
 
       buttonEl.click (e) =>
         @selectTool(t)
 
+  initCustomButtons: ->
+    @customButtons = @opts.customButtons
+    _.each @customButtons, (c) =>
+      #defaults
+      _.extend({
+        title: ''
+        cssSuffix: 'button'
+        buttonImage: null
+        text: null
+        callback: -> 
+      }, c)
+    
+      buttonEl = $("
+        <div class='button custom-#{c.cssSuffix}' title='#{c.title}'>
+          <div class='button-image-wrapper'></div>
+        </div>")
+        
+      imageWrapper = buttonEl.find('.button-image-wrapper')
+      if !!c.buttonImage
+        imageWrapper.html(c.buttonImage())
+      else
+        imageWrapper.remove()
+        
+      if !!c.text
+        buttonEl.addClass('varwidth')
+        buttonEl.append(c.text)
+      
+      @$el.find('.custom-buttons').append(buttonEl)
+      buttonEl.click (e) =>
+        c.callback()
+      
   initZoom: ->
     @$el.find('.zoom-in-button').click (e) =>
       @lc.zoom(0.2)
@@ -86,16 +118,16 @@ class LC.Toolbar
         <div class='button clear-button danger varwidth' title='Start over'>Clear</div>
         <div class='button-group'>
           <div class='button btn-warning undo-button' title='Undo'>
-            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/undo.png'></div>
+            <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/undo.png'></div>
           </div><div class='button btn-warning redo-button' title='Redo'>
-            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/redo.png'></div>
+            <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/redo.png'></div>
           </div>
         </div>
         <div class='button-group'>
           <div class='button btn-inverse zoom-out-button' title='Zoom out'>
-            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-out.png'></div>
+            <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-out.png'></div>
           </div><div class='button btn-inverse zoom-in-button' title='Zoom in'>
-            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-in.png'></div>
+            <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-in.png'></div>
           </div>
         </div>
         <div class='zoom-display' title='Current zoomlevel'>1</div>
@@ -107,6 +139,8 @@ class LC.Toolbar
       <div class='toolbar-row-left'>
         <div class='primary-picker'></div>
         <div class='tool-options-container'></div>
+      </div>
+      <div class='toolbar-row-right custom-buttons'>
       </div>
       <div class='clearfix'></div>
     </div>

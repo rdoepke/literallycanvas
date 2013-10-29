@@ -63,9 +63,10 @@
       height: 24px;
       overflow: hidden;
       
-      .tool-image-wrapper {
+      .button-image-wrapper {
         height: 24px;
         padding-top: 3px;
+        display: inline-block;
         img {
           width: 18px;
           height: 18px;
@@ -74,6 +75,7 @@
       }
       
       &.varwidth {
+        padding: 0 8px;
         width: auto;
       }
     }
@@ -107,8 +109,9 @@
     display: inline-block;
     padding: 0 5px;
     text-align: center;
+    vertical-align: top;
     text-decoration: none;
-    text-shadow: 1px 1px 0 #fff;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
     color: #333;
     white-space: nowrap;
     cursor: pointer;
