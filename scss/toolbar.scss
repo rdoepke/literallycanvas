@@ -30,44 +30,39 @@
       width: 100%;
       height: 30px;
     }
-
+    
     .toolbar-row-left, .toolbar-row-right {
       margin-top: 3px;
       margin-bottom: 3px;
       height: 24px;
       line-height: 24px;
+      & > * {
+        float: left;
+        display: inline-block;
+      }
     }
 
     .toolbar-row-left {
       float: left;
       padding-left: 3px;
+      & > * {
+        margin-right: 1em;
+      }
     }
 
     .toolbar-row-right {
-      width: 13em;
       float: right;
-      text-align: right;
       padding-right: 3px;
+      & > * {
+        margin-left: 0.5em;
+      }
     }
-
-    .primary-picker, .secondary-picker {
-        display: inline-block;
-        margin-right: 10px;
-    }
-  }
-
-  /* action/tool buttons */
-
-  .tools {
-    float: left;
-
+    
     .button {
-      text-align: center;
       width: 30px;
       height: 24px;
-      padding: 0;
-      position: relative;
-
+      overflow: hidden;
+      
       .tool-image-wrapper {
         height: 24px;
         padding-top: 3px;
@@ -77,28 +72,12 @@
           vertical-align: top;
         }
       }
-    }
-  }
-
-  .simple-strokewidth {
-    .button {
-      text-align: center;
-      width: 30px;
-      height: 24px;
-      padding: 0;
-      position: relative;
-      margin: inherit 0;
-
-      .tool-image-wrapper {
-        height: 24px;
-        padding-top: 3px;
-        img {
-          width: 18px;
-          height: 18px;
-          vertical-align: top;
-        }
+      
+      &.varwidth {
+        width: auto;
       }
     }
+    
   }
 
   .zoom-display {
@@ -108,24 +87,13 @@
     background-color: #333;
     font-size: 12px;
     color: white;
-    display: inline-block;
     line-height: 14px;
     padding: 5px 0;
-    position: relative;
-    top: -5px;
-  }
-
-  .tool-options-container {
-    display: inline-block;
-    position: relative;
-    top: -5px;
   }
 
   .tool-options {
 
     input[type="text"] {
-          position: relative;
-          top: -3px;
           width: 20em;
     }
 
@@ -155,16 +123,6 @@
     /* IE hacks */
     zoom: 1;
     *display: inline;
-
-    .toolbar-image-wrapper {
-        height: 24px;
-        padding-top: 3px;
-        img {
-          width: 18px;
-          height: 18px;
-          vertical-align: top;
-        }
-      }
   }
 
   .button:hover,
@@ -192,8 +150,6 @@
     color: white;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
     @include grad(#f37873, #b33630);
-    position: relative;
-    top: -4px;
   }
 
   .button.danger:hover,
@@ -213,7 +169,6 @@
   }
 
   /* did my own button groups */
-
   .button-group {
     display: inline-block;
 

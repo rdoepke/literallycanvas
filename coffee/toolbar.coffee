@@ -83,24 +83,22 @@ class LC.Toolbar
       </div>
 
       <div class='toolbar-row-right'>
-        <div class='action-buttons'>
-          <div class='button clear-button danger' title='Start over'>Clear</div>
-          <div class='button-group'>
-            <div class='button btn-warning undo-button' title='Undo'>
-              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/undo.png'></div>
-            </div><div class='button btn-warning redo-button' title='Redo'>
-              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/redo.png'></div>
-            </div>
+        <div class='button clear-button danger varwidth' title='Start over'>Clear</div>
+        <div class='button-group'>
+          <div class='button btn-warning undo-button' title='Undo'>
+            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/undo.png'></div>
+          </div><div class='button btn-warning redo-button' title='Redo'>
+            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/redo.png'></div>
           </div>
-          <div class='button-group'>
-            <div class='button btn-inverse zoom-out-button' title='Zoom out'>
-              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-out.png'></div>
-            </div><div class='button btn-inverse zoom-in-button' title='Zoom in'>
-              <div class='toolbar-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-in.png'></div>
-            </div>
-          </div>
-          <div class='zoom-display' title='Current zoomlevel'>1</div>
         </div>
+        <div class='button-group'>
+          <div class='button btn-inverse zoom-out-button' title='Zoom out'>
+            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-out.png'></div>
+          </div><div class='button btn-inverse zoom-in-button' title='Zoom in'>
+            <div class='tool-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-in.png'></div>
+          </div>
+        </div>
+        <div class='zoom-display' title='Current zoomlevel'>1</div>
       </div>
       <div class='clearfix'></div>
     </div>
