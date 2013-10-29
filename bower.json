@@ -19,7 +19,7 @@
   "dependencies": {
     "underscore": "*",
     "jquery": "*"
-  }
+  },
   "ignore": [
     "**/.*",
     "node_modules",
