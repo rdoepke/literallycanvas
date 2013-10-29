@@ -27,8 +27,15 @@ class Color
 
 class Colorpicker
   constructor: (element, options) ->
-    @element = $(element)
-    @picker = @element.append($(CPGlobal.template))
+    @opts = _.extend({
+      colors: [
+        {val: 'rgba(0,0,0,1.0)', title: 'Black'},
+        {val: 'rgba(0,83,159,1.0)', 'rgba(0,0,0,1.0)', title: 'Dark blue'},
+        {val: 'rgba(128,171,215,1.0)', title: 'Light blue'},
+        {val: 'rgba(185,15,15,1.0)', title: 'Red'},
+      ],
+    }, options)
+    @preparePicker element
     @availableColors = @picker.find(".colorpicker-color")
     @availableColors.on("click", $.proxy(@click, this))
     @setValue(@element.data("color"))
@@ -45,6 +52,20 @@ class Colorpicker
       type: "changeColor"
       color: @color
       secondary: true
+      
+  preparePicker: (element) ->
+    @element = $(element)
+    @picker = @element.append($(CPGlobal.template))
+    _.each @opts.colors, (c) =>
+      if !c.background
+        c.background = c.val
+      $color = $("<div data-color='#{c.val}' class='colorpicker-color' 
+        style='background: #{c.background}' title='#{c.title}' ></div>")
+      if c.transparent
+        $color.addClass "transparent"
+      $color.appendTo(@picker.find('.colorpicker'));
+      $color.click (e) =>
+        @click e
 
 $.fn.colorpicker = (option) ->
   @each ->
@@ -81,14 +102,6 @@ CPGlobal =
   ]
 
   template: """
-    <div class="colorpicker" title="Color picker">
-      <div class="colorpicker-color"
-        data-color="rgba(0,0,0,1.0)" style="background: rgb(0,0,0)"/>
-      <div class="colorpicker-color"
-        data-color="rgba(0,83,159,1.0)" style="background: rgb(0,83,159)"/>
-      <div class="colorpicker-color"
-        data-color="rgba(128,171,215,1.0)" style="background: rgb(128,171,215)"/>
-      <div class="colorpicker-color"
-        data-color="rgba(185,15,15,1.0)" style="background: rgb(185,15,15)"/>
+    <div class="colorpicker">
     </div>
   """

@@ -1,11 +1,18 @@
+@charset "UTF-8";
 .colorpicker {
   display: inline-block; }
   .colorpicker .colorpicker-color {
+    overflow: hidden;
     display: inline-block;
     width: 20px;
     height: 20px;
     border: 1px solid gray;
     margin: 2px 0; }
+    .colorpicker .colorpicker-color.transparent:after {
+      font-size: 12px;
+      color: red;
+      content: "✕";
+      vertical-align: top; }
     .colorpicker .colorpicker-color.active {
       margin: 0px;
       width: 25px;

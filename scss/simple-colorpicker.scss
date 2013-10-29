@@ -2,11 +2,19 @@
     display: inline-block;
 
     .colorpicker-color {
+        overflow: hidden;
         display: inline-block;
         width: 20px;
         height: 20px;
         border: 1px solid gray;
         margin: 2px 0;
+        
+          &.transparent:after {
+            font-size: 12px;
+            color: red;
+            content: "✕";
+            vertical-align: top;
+          }
 
         &.active {
             margin: 0px;
