@@ -59,14 +59,12 @@
         display: inline-block; }
     .literally .toolbar-row .toolbar-row-left {
       float: left;
-      padding-left: 3px;
-      background-color: blue; }
+      padding-left: 3px; }
       .literally .toolbar-row .toolbar-row-left > * {
         margin-right: 1em; }
     .literally .toolbar-row .toolbar-row-right {
       float: right;
-      padding-right: 3px;
-      background-color: yellow; }
+      padding-right: 3px; }
       .literally .toolbar-row .toolbar-row-right > * {
         margin-left: 0.5em; }
     .literally .toolbar-row .button {
