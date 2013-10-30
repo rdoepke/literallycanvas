@@ -85,7 +85,7 @@ class LC.Toolbar
         
       imageWrapper = buttonEl.find('.button-image-wrapper')
       if !!c.buttonImage
-        imageWrapper.html(c.buttonImage())
+        imageWrapper.html("<img src='#{c.buttonImage}'/>")
       else
         imageWrapper.remove()
         
