@@ -134,6 +134,7 @@ $.fn.literallycanvas = (opts = {}, option = null, set = null) ->
     if opts == 'option' && typeof option == 'string'
       switch option
         when 'backgroundImage' then el.literallycanvas.setBackground set
+        when 'clear' then el.literallycanvas.clear()
   this
 
 
