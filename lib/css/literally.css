@@ -7,14 +7,15 @@
     width: 20px;
     height: 20px;
     border: 1px solid gray;
-    margin: 2px 0; }
+    margin: 2px;
+    cursor: pointer; }
     .colorpicker .colorpicker-color.transparent:after {
       font-size: 12px;
       color: red;
       content: "✕";
       vertical-align: top; }
     .colorpicker .colorpicker-color.active {
-      margin: 0px;
+      margin: 0;
       width: 25px;
       height: 25px; }
 
@@ -31,7 +32,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    cursor: default;
+    cursor: crosshair;
     width: 100%;
     background-color: blue;
     background-repeat: no-repeat; }

@@ -7,7 +7,8 @@
         width: 20px;
         height: 20px;
         border: 1px solid gray;
-        margin: 2px 0;
+        margin: 2px;
+        cursor: pointer;
         
           &.transparent:after {
             font-size: 12px;
@@ -17,7 +18,7 @@
           }
 
         &.active {
-            margin: 0px;
+            margin: 0;
             width: 25px;
             height: 25px;
         }

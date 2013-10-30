@@ -202,6 +202,7 @@ class LC.LiterallyCanvas
     if !backgroundURL || backgroundURL == ''
       @$canvas.css 'background-image', 'none'
       @background = null
+      @removeBackgroundButton.hide() if !!@removeBackgroundButton
       return
     image = new Image()
     image.onload = =>
@@ -219,6 +220,7 @@ class LC.LiterallyCanvas
           x: 0
           y: 0
       @$canvas.css("background-image", "url('#{backgroundURL}')")
+      @removeBackgroundButton.show() if !!@removeBackgroundButton
       @updateBackground()
     image.src = backgroundURL    
 

@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
@@ -17,6 +18,30 @@
    sodipodi:docname="Icons.svg">
   <defs
      id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3967">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3969" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop3971" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3959">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3961" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0;"
+         offset="1"
+         id="stop3963" />
+    </linearGradient>
     <marker
        inkscape:stockid="Arrow2Lend"
        orient="auto"
@@ -69,6 +94,78 @@
          style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none"
          transform="scale(0.4)" />
     </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3959"
+       id="linearGradient3965"
+       x1="222.11235"
+       y1="257.88992"
+       x2="222.11235"
+       y2="261.76404"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3967"
+       id="linearGradient3973"
+       x1="215.29129"
+       y1="261.37082"
+       x2="215.47565"
+       y2="262.94919"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       id="filter4034">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.078179474"
+         id="feGaussianBlur4036" />
+    </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3967"
+       id="linearGradient4038"
+       gradientUnits="userSpaceOnUse"
+       x1="215.29129"
+       y1="261.37082"
+       x2="215.47565"
+       y2="262.94919" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3959"
+       id="linearGradient4040"
+       gradientUnits="userSpaceOnUse"
+       x1="222.11235"
+       y1="257.88992"
+       x2="222.11235"
+       y2="261.76404" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3959"
+       id="linearGradient4043"
+       gradientUnits="userSpaceOnUse"
+       x1="222.11235"
+       y1="257.88992"
+       x2="222.11235"
+       y2="261.76404"
+       gradientTransform="translate(-0.37880721,-0.44194174)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3967"
+       id="linearGradient4046"
+       gradientUnits="userSpaceOnUse"
+       x1="215.29129"
+       y1="261.37082"
+       x2="215.47565"
+       y2="262.94919"
+       gradientTransform="translate(-0.37880721,-0.44194174)" />
+    <filter
+       inkscape:collect="always"
+       id="filter4059">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.13826465"
+         id="feGaussianBlur4061" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -77,13 +174,13 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.9195959"
-     inkscape:cx="285.62963"
-     inkscape:cy="897.47825"
+     inkscape:zoom="15.839192"
+     inkscape:cx="213.46322"
+     inkscape:cy="792.68384"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1796"
+     inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -337,5 +434,96 @@
          d="m 280.67583,171.88797 0,14.89975"
          style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     </g>
+    <rect
+       style="opacity:0;fill:#ff0000;fill-opacity:1;stroke:none"
+       id="rect3812-7"
+       width="32"
+       height="32"
+       x="205.2234"
+       y="244.40259"
+       inkscape:export-filename="L:\Share\wescript-canvas\lib\img\removebackground.png"
+       inkscape:export-xdpi="101.25"
+       inkscape:export-ydpi="101.25" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.80000001;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3931"
+       sodipodi:cx="190.35062"
+       sodipodi:cy="257.65622"
+       sodipodi:rx="1.7046324"
+       sodipodi:ry="1.2311234"
+       d="m 192.05525,257.65622 a 1.7046324,1.2311234 0 1 1 -3.40927,0 1.7046324,1.2311234 0 1 1 3.40927,0 z" />
+    <g
+       id="g3982"
+       style="stroke:#000000;fill:none;opacity:0.43097643000000002;filter:url(#filter4034)"
+       inkscape:export-filename="L:\Share\wescript-canvas\lib\img\removebackground.png"
+       inkscape:export-xdpi="101.25"
+       inkscape:export-ydpi="101.25">
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.98705429000000000;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         id="rect3984"
+         width="17.908739"
+         height="13.36305"
+         x="212.01649"
+         y="253.34225" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.86746120000000004;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         d="m 212.19516,264.19065 c 1.03792,-2.45287 2.80891,-5.26409 4.98765,-1.89404"
+         id="path3986"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path3988"
+         d="m 215.16249,266.27409 c 5.16011,-11.78902 10.71396,-10.0264 14.58408,-5.17703"
+         style="fill:none;stroke:#000000;stroke-width:0.86746120000000004;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;fill-opacity:1" />
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.98705429000000000;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3923"
+       width="17.908739"
+       height="13.36305"
+       x="211.63768"
+       y="252.90031"
+       inkscape:export-filename="L:\Share\wescript-canvas\lib\img\removebackground.png"
+       inkscape:export-xdpi="101.25"
+       inkscape:export-ydpi="101.25" />
+    <path
+       style="fill:url(#linearGradient4046);fill-opacity:1;stroke:#ffffff;stroke-width:0.8674612;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 211.81635,263.74871 c 1.03792,-2.45287 2.80891,-5.26409 4.98765,-1.89404"
+       id="path3947"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="L:\Share\wescript-canvas\lib\img\removebackground.png"
+       inkscape:export-xdpi="101.25"
+       inkscape:export-ydpi="101.25" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3949"
+       d="m 214.78368,265.83215 c 5.16011,-11.78902 10.71396,-10.0264 14.58408,-5.17703"
+       style="fill:url(#linearGradient4043);fill-opacity:1;stroke:#ffffff;stroke-width:0.8674612;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="L:\Share\wescript-canvas\lib\img\removebackground.png"
+       inkscape:export-xdpi="101.25"
+       inkscape:export-ydpi="101.25" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4049"
+       d="m 207.08128,246.95491 27.65293,27.65293"
+       style="opacity:0.5;fill:#000000;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4059)"
+       inkscape:export-filename="L:\Share\wescript-canvas\lib\img\removebackground.png"
+       inkscape:export-xdpi="101.25"
+       inkscape:export-ydpi="101.25" />
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 207.14441,246.0079 27.65293,27.65293"
+       id="path3975"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="L:\Share\wescript-canvas\lib\img\removebackground.png"
+       inkscape:export-xdpi="101.25"
+       inkscape:export-ydpi="101.25" />
   </g>
 </svg>

@@ -39,6 +39,12 @@ class LC.Toolbar
 
     @$el.find('.redo-button').click (e) =>
       @lc.redo()
+      
+    $rbButton = @$el.find('.removebackground-button')
+    @lc.removeBackgroundButton = $rbButton
+    $rbButton.hide() if !@lc.background
+    $rbButton.click (e) =>
+      @lc.setBackground null
 
   initTools: ->
     @tools = (new ToolClass(@opts) for ToolClass in @opts.toolClasses)
@@ -115,7 +121,10 @@ class LC.Toolbar
       </div>
 
       <div class='toolbar-row-right'>
-        <div class='button clear-button danger varwidth' title='Start over'>Clear</div>
+        <div class='button removebackground-button danger' title='Remove background image'>
+          <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/removebackground.png'></div>
+        </div>
+        <div class='button clear-button danger varwidth' title='Reset drawing'>Clear</div>
         <div class='button-group'>
           <div class='button btn-warning undo-button' title='Undo'>
             <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/undo.png'></div>
