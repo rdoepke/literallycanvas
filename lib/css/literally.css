@@ -99,6 +99,9 @@
     color: white;
     line-height: 14px;
     padding: 5px 0; }
+  .literally .tool-options > * {
+    float: left;
+    display: inline-block; }
   .literally .tool-options input[type="text"] {
     width: 20em; }
   .literally .button {

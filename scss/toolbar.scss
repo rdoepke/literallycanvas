@@ -94,7 +94,10 @@
   }
 
   .tool-options {
-
+    & > * {
+        float: left;
+        display: inline-block;
+    }
     input[type="text"] {
           width: 20em;
     }

@@ -110,7 +110,7 @@ class LC.RectangleWidget extends LC.SimpleStrokeWidget
         $strokewidth.hide()
     
     $el.append @tool.input, $label, $strokewidth
-    return $el
+    return $el.children()
   
 
 class LC.LineWidget extends LC.SimpleStrokeWidget
