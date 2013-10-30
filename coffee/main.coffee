@@ -112,6 +112,8 @@ initLiterallyCanvas = (el, opts = {}) ->
 
   if opts.keyboardShortcuts
     $(document).keydown (e) ->
+      if $(document.activeElement).is('input[type="text"]')
+        return
       switch e.which
         when 37 then lc.pan -10, 0
         when 38 then lc.pan 0, -10
