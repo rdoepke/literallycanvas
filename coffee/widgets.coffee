@@ -96,24 +96,20 @@ class LC.RectangleWidget extends LC.SimpleStrokeWidget
   button: -> "<img src='#{@opts.imageURLPrefix}/rectangle.png'>"
   makeTool: -> new LC.RectangleTool()
   options: ->
-    $el = $("
-      <input type='checkbox' class='transparent-val'>
-    ")
-
-    $input = $el.filter('input')
-    if $input.size() == 0
-      $input = $el.find('input')
-    @tool.input = $input
+    $el = $('<div>')
+    @tool.input = $("<input type='checkbox' value='transparent' id='chkTransparent'>")
+    $label = $('<label for = "chkTransparent">Transparent&nbsp;&nbsp;&nbsp;</label>')
+    $strokewidth = super
+    $strokewidth.hide()
     
-    $super = super.hide()
-    $input.bind 'change', (e) =>
-      @tool.transparent = $input.attr('checked')
+    @tool.input.bind 'change', (e) =>
+      @tool.transparent = @tool.input.prop('checked')
       if @tool.transparent
-        $super.show()
+        $strokewidth.show()
       else
-        $super.hide()
+        $strokewidth.hide()
     
-    $el.after($('<span>Transparent&nbsp;&nbsp;&nbsp;</span>').after($super))
+    $el.append @tool.input, $label, $strokewidth
     return $el
   
 
