@@ -30,6 +30,29 @@ appropriate file from `lib/js`. Then do this:
 $('.literally').literallycanvas();
 ```
 
+In order to add a background image, call either
+```javascript
+// upon initialization
+$('.literally').literallycanvas({backgroundImage: 'image.jpg'});
+
+// after initialization, call with null or '' to reset
+$('.literally').literallycanvas("option", "backgroundImage", "image.jpg");
+```
+
+You can add custom buttons upon initialization, by providing objects within an
+array to the call, e.g.:
+```javascript
+$('.literally').literallycanvas({customButtons: [{
+  title: 'Tooltip for the button',
+  cssSuffix: 'myCustomButton',
+  buttonImage: 'myImage.jpg',
+  text: 'Example button',
+  callback: function() { alert('alerts suck'); },
+}, {text: 'second button'}]});
+```
+All elements of an button object are optional. Thus, you may provide either text
+or an image for the button to show (or both).
+
 Files
 -----
 
