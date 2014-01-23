@@ -8,7 +8,8 @@ written by Stephen Johnson and Cameron Paul. It was reduced in function and adds
 new functionality. It is laid out to be used in a lecture slides annotating
 context. Hence, it is capable for creating quick and dirty lecture notes
 scribbles. In contrast to the original widget it is capable of loading images
-in the background to be drawn upon and exporting the result.
+in the background to be drawn upon and exporting the result. Additionally it supports
+adding text (different implementation from the original literallycanvas).
 
 Usage
 -----
