@@ -204,6 +204,8 @@ class LC.LiterallyCanvas
       @background = null
       @removeBackgroundButton.hide() if !!@removeBackgroundButton
       return
+    @clear()
+    @zoom(-@scale + 1)
     image = new Image()
     image.onload = =>
       resizedDimensions = LC.resize(image.width, image.height, 

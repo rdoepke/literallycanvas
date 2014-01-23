@@ -100,11 +100,18 @@ class LC.Toolbar
   initZoom: ->
     @$el.find('.zoom-in-button').click (e) =>
       @lc.zoom(0.2)
-      @$el.find('.zoom-display').html(@lc.scale)
+      @updateZoom()
 
     @$el.find('.zoom-out-button').click (e) =>
       @lc.zoom(-0.2)
-      @$el.find('.zoom-display').html(@lc.scale)
+      @updateZoom()
+      
+    @$el.find('.zoom-display').click (e) =>
+      @lc.zoom(-@lc.scale + 1)
+      @updateZoom()
+      
+  updateZoom: ->
+    @$el.find('.zoom-display').html(@lc.scale)
 
   selectTool: (t) ->
     @$el.find(".tools .active").removeClass("active")
@@ -139,7 +146,7 @@ class LC.Toolbar
             <div class='button-image-wrapper'><img src='#{@opts.imageURLPrefix}/zoom-in.png'></div>
           </div>
         </div>
-        <div class='zoom-display' title='Current zoomlevel'>1</div>
+        <div class='zoom-display' title='Current zoomlevel. Click to reset to 1'>1</div>
       </div>
       <div class='clearfix'></div>
     </div>

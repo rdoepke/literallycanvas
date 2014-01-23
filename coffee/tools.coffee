@@ -79,10 +79,13 @@ class LC.Eraser extends LC.Pencil
 class LC.Pan extends LC.Tool
 
   begin: (x, y, lc) ->
-    @start = {x:x, y:y}
+    @start = {x, y}
 
   continue: (x, y, lc) ->
     lc.pan @start.x - x, @start.y - y
+    lc.repaint()
+    
+  end: (x, y, lc) ->
     lc.repaint()
 
 

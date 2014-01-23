@@ -91,6 +91,12 @@
     color: white;
     line-height: 14px;
     padding: 5px 0;
+    cursor: pointer;
+    
+    &:active, &:hover {
+      color: #599bdc;
+      @include grad(#599bdc, #3072b3);
+    }
   }
 
   .tool-options {

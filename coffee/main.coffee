@@ -133,8 +133,10 @@ $.fn.literallycanvas = (opts = {}, option = null, set = null) ->
       el.literallycanvasToolbar = val[1]
     if opts == 'option' && typeof option == 'string'
       switch option
-        when 'backgroundImage' then el.literallycanvas.setBackground set
         when 'clear' then el.literallycanvas.clear()
+        when 'backgroundImage'
+          el.literallycanvas.setBackground set
+          el.literallycanvasToolbar.updateZoom()
   this
 
 
